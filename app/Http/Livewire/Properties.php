@@ -11,6 +11,7 @@ class Properties extends Component
 {
     use WithPagination;
 
+    public $typesSelected = [];
     public $searchTerm;
     public $sort_by;
 
@@ -22,7 +23,19 @@ class Properties extends Component
 
     public function updatingSearchTerm()
     {
+        dd('asd');
         $this->resetPage();
+    }
+
+    public function typePressed($key)
+    {   
+        $index = array_search($key, $this->typesSelected);
+
+        if ($index === false) {
+            array_push($this->typesSelected, $key);
+        } else {
+            array_splice($this->typesSelected, $index, 1);
+        }
     }
 
     private function splitSort($str)
@@ -32,47 +45,18 @@ class Properties extends Component
 
     public function render()
     {   
-        
-        // $properties = Property::orderBy("town_or_city", 'ASC');
-
-        // $properties->(function ($q) {
-        //     if (!empty($this->searchTerm)) {
-        //         $properties = $properties->orWhere('town_or_city', 'like', '%' . $this->searchTerm . '%');
-        //     }
-        // });
-
-        
-        // //$properties = $properties->orWhere('property_type_id', $this->property_type);
-
-        // $properties = $properties->paginate(10);
         $split = $this->splitSort($this->sort_by);
 
         $properties = Property::orderBy($split[0], $split[1])
-            ->when($this->searchTerm, function($builder) {
-                return $builder->where('town_or_city', 'like', '%' . $this->searchTerm . '%')
-                            ->orWhere('street', 'like', '%' . $this->searchTerm . '%');
-            })
-            //->where('property_type_id', $this->property_type)
-            ->paginate(10);
-
-
-// Order::where('user_id', '=', auth()->id())
-//     ->when($this->filter, function ($builder) {
-//         $builder->where('status', $this->filter);
-//     })
-//     ->when($this->search, function ($builder) {
-//         $builder->where(function ($builder) {
-//             $builder->where('shipping_name', 'like', '%' . $this->search . '%')
-//                 ->orWhere('order_no', 'like', '%' . $this->search . '%');
-//         });
-//     })
-//     ->orderBy($this->sortColumn,$this->sortDirection)
-//     ->paginate(10);
+            ->filter(['search' => $this->searchTerm])
+            ->paginate(10)
+            ->withQueryString();
 
 
         return view('livewire.properties', [
             'properties' => $properties,
-            'types' => PropertyType::all()
+            'types' => PropertyType::all(),
+            'typesSelected' => $this->typesSelected
         ]);
     }
 }
