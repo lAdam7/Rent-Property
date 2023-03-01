@@ -11,4 +11,11 @@ class PropertyController extends Controller
     {
         return view('properties');
     }
+
+    public function show(Property $property)
+    {
+        return view('property',[
+            'property' => $property
+        ]);
+    }
 }

@@ -23,7 +23,9 @@
                             </p>
 
                             @if (in_array($type->id, $typesSelected))
-                                <x-coolicon-check x-init="typesSelectedString = '{{ ucwords($type->name) }}' + '{{ count($typesSelected) > 1 ? ' + ' . count($typesSelected)-1 : '' }}'" class="h-6 w-6 text-blue-600" />
+                                <x-check 
+                                    x-init="typesSelectedString = '{{ ucwords($type->name) }}' + '{{ count($typesSelected) > 1 ? ' + ' . count($typesSelected)-1 : '' }}'"
+                                />
                             @endif
                         </div>
                     @endforeach
@@ -52,8 +54,7 @@
                         </p>
 
                         @if ($includes['furnished'])
-                            <x-coolicon-check 
-                                class="h-6 w-6 text-blue-600"
+                            <x-check 
                                 x-init="includesSelectedString = 'Furnished' + '{{ count(array_filter($includes)) > 1 ? ' + ' . count(array_filter($includes))-1 : '' }}'"
                             />
                             
@@ -69,8 +70,7 @@
                         </p>
 
                         @if ($includes['garden'])
-                            <x-coolicon-check 
-                                class="h-6 w-6 text-blue-600"
+                            <x-check 
                                 x-init="includesSelectedString = 'Garden' + '{{ count(array_filter($includes)) > 1 ? ' + ' . count(array_filter($includes))-1 : '' }}'"
                             />
                             
@@ -86,11 +86,9 @@
                         </p>
 
                         @if ($includes['parking'])
-                            <x-coolicon-check 
-                                class="h-6 w-6 text-blue-600"
+                            <x-check
                                 x-init="includesSelectedString = 'Parking' + '{{ count(array_filter($includes)) > 1 ? ' + ' . count(array_filter($includes))-1 : '' }}'"
-                            />
-                            
+                            />                           
                         @endif
                     </div>
 
@@ -113,10 +111,14 @@
         </x-form.field>
     </div>
     
-    <main class="max-w-3xl mx-auto mt-6 lg:mt-20 space-y-6">
-        @foreach ($properties as $property)
-            <x-property-card :property="$property"/>
-        @endforeach
+    <main class="max-w-3xl mx-auto mt-6 lg:mt-20">
+        @if($properties->count())
+            @foreach ($properties as $property)
+                <x-property-card :property="$property"/>
+            @endforeach
+        @else
+            <p class="text-center"><strong>We have no properties matching your search!</strong></p>
+        @endif
     </main>
 
     {{-- @foreach ($properties as $property)

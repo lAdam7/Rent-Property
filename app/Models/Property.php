@@ -44,6 +44,11 @@ class Property extends Model
 
     }
 
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
     public function frequency()
     {
         return $this->belongsTo(PropertyFrequency::class, 'property_frequency_id');

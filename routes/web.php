@@ -25,6 +25,7 @@ Auth::routes([
 ]);
 
 Route::get('/', [PropertyController::class, 'index']);
+Route::get('property/{property}', [PropertyController::class, 'show']);
 
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
