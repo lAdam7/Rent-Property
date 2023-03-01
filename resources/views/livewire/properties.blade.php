@@ -1,7 +1,7 @@
 <div>
 
-    <div class="flex justify-center space-x-5">
-        <x-form.input name="search city or town" required autocomplete="email" />
+    <div class="flex justify-center space-x-5 flex-wrap">
+        <x-form.input wire:model="searchTerm" name="search city or town" required autocomplete="email"   />
 
         <x-form.field>
             <x-form.label name="property type" />
@@ -27,6 +27,76 @@
                             @endif
                         </div>
                     @endforeach
+                </div>
+            </div>
+        </x-form.field>
+
+        {{-- Includes --}}
+        <x-form.field>
+            <x-form.label name="Include" />
+
+            <div x-data="{ show: false, includesSelectedString: '' }" @click.away="show = false" class="relative" style="width: 200px">
+                <div @click="show = !show" class="border border-gray-200 p-2 w-full rounded">
+                    {!! count(array_filter($includes)) === 0 ? 'None' : '<p class="truncate ... overflow-hidden" x-text="includesSelectedString"></p>' !!}
+                </div>                                                                      
+                <div x-show="show" class="absolute border z-100 border-gray-200 bg-white p-2 rounded mt-3 w-full" style="display: none">
+
+
+                    <div
+                        class="flex justify-between hover:bg-gray-300 p-2"
+                        wire:click="flipFurnished()"
+                        @click="show = false"
+                    >
+                        <p class="select-none">
+                            Furnished
+                        </p>
+
+                        @if ($includes['furnished'])
+                            <x-coolicon-check 
+                                class="h-6 w-6 text-blue-600"
+                                x-init="includesSelectedString = 'Furnished' + '{{ count(array_filter($includes)) > 1 ? ' + ' . count(array_filter($includes))-1 : '' }}'"
+                            />
+                            
+                        @endif
+                    </div>
+                    <div
+                        class="flex justify-between hover:bg-gray-300 p-2"
+                        wire:click="flipGarden()"
+                        @click="show = false"
+                    >
+                        <p class="select-none">
+                            Garden
+                        </p>
+
+                        @if ($includes['garden'])
+                            <x-coolicon-check 
+                                class="h-6 w-6 text-blue-600"
+                                x-init="includesSelectedString = 'Garden' + '{{ count(array_filter($includes)) > 1 ? ' + ' . count(array_filter($includes))-1 : '' }}'"
+                            />
+                            
+                        @endif
+                    </div>
+                    <div
+                        class="flex justify-between hover:bg-gray-300 p-2"
+                        wire:click="flipParking()"
+                        @click="show = false"
+                    >
+                        <p class="select-none">
+                            Parking
+                        </p>
+
+                        @if ($includes['parking'])
+                            <x-coolicon-check 
+                                class="h-6 w-6 text-blue-600"
+                                x-init="includesSelectedString = 'Parking' + '{{ count(array_filter($includes)) > 1 ? ' + ' . count(array_filter($includes))-1 : '' }}'"
+                            />
+                            
+                        @endif
+                    </div>
+
+
+
+
                 </div>
             </div>
         </x-form.field>

@@ -14,16 +14,21 @@ class Properties extends Component
     public $typesSelected = [];
     public $searchTerm;
     public $sort_by;
+    public $furnished;
+    public $garden;
+    public $parking;
 
 
     public function mount(){
         $this->sort_by = 'created_at.DESC'; 
         $this->searchTerm = "";
-     }
+        $this->furnished = false;
+        $this->garden = false;
+        $this->parking = false;
+    }
 
     public function updatingSearchTerm()
     {
-        dd('asd');
         $this->resetPage();
     }
 
@@ -38,6 +43,23 @@ class Properties extends Component
         }
     }
 
+    public function flipFurnished()
+    {
+        $this->furnished = !$this->furnished;
+        $this->resetPage();
+    }
+
+    public function flipGarden()
+    {
+        $this->garden = !$this->garden;
+        $this->resetPage();
+    }
+
+    public function flipParking()
+    {
+        $this->parking = !$this->parking;
+    }
+
     private function splitSort($str)
     {
         return (explode('.', $str ));
@@ -48,7 +70,15 @@ class Properties extends Component
         $split = $this->splitSort($this->sort_by);
 
         $properties = Property::orderBy($split[0], $split[1])
-            ->filter(['search' => $this->searchTerm])
+            ->filter([
+                'search' => $this->searchTerm,
+                'property_type' => $this->typesSelected,
+                'includes' => [
+                    'furnished' => $this->furnished,
+                    'garden' => $this->garden,
+                    'parking' => $this->parking
+                ]
+            ])
             ->paginate(10)
             ->withQueryString();
 
@@ -56,7 +86,12 @@ class Properties extends Component
         return view('livewire.properties', [
             'properties' => $properties,
             'types' => PropertyType::all(),
-            'typesSelected' => $this->typesSelected
+            'typesSelected' => $this->typesSelected,
+            'includes' => [
+                'furnished' => $this->furnished,
+                'garden' => $this->garden,
+                'parking' => $this->parking
+            ]
         ]);
     }
 }

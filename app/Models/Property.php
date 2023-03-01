@@ -24,19 +24,22 @@ class Property extends Model
             );
         });
 
-        // $query->when($filters['category'] ?? false, function($query, $category) {
-        //     $query->whereHas('category', fn($query) => $query->where('slug', $category));
-        //     /*
-        //     $query->whereExists(fn($query) => 
-        //         $query->from('categories')
-        //         ->whereColumn('categories.id', 'posts.category_id')
-        //         ->where('categories.slug', $category)
-        // );*/
-        // });
+        $query->when($filters['property_type'] ?? false, function($query, $propertyTypes) {
+            $query->whereHas('type', fn($query) => $query->whereIn('id', $propertyTypes));
 
-        // $query->when($filters['author'] ?? false, function($query, $author) {
-        //     $query->whereHas('author', fn($query) => $query->where('username', $author));
-        // });
+        });
+
+        $query->when($filters['includes']['garden'] ?? false, function($query, $author) {
+            $query->where('garden', true);
+        });
+
+        $query->when($filters['includes']['furnished'] ?? false, function($query, $author) {
+            $query->where('furnished', true);
+        });
+
+        $query->when($filters['includes']['parking'] ?? false, function($query, $author) {
+            $query->where('parking', true);
+        });
 
 
     }
