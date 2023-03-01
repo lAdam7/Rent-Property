@@ -1,6 +1,6 @@
 <div>
 
-    <div class="flex justify-center space-x-5 flex-wrap">
+    <div class="flex justify-center space-x-5 flex-wrap bg-gray-150">
         <x-form.input wire:model="searchTerm" name="search city or town" required autocomplete="email"   />
 
         <x-form.field>
@@ -112,8 +112,14 @@
             </select>
         </x-form.field>
     </div>
+    
+    <main class="max-w-3xl mx-auto mt-6 lg:mt-20 space-y-6">
+        @foreach ($properties as $property)
+            <x-property-card :property="$property"/>
+        @endforeach
+    </main>
 
-    @foreach ($properties as $property)
+    {{-- @foreach ($properties as $property)
                 <article
                     class="flex justify-center transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl"
                 >
@@ -133,7 +139,7 @@
                         <strong>{{ ucwords($property->type->name) }}</strong>
                     </div>
                 </article>
-    @endforeach
+    @endforeach --}}
 
-    {{ $properties->links() }}
+    {{-- {{ $properties->links() }} --}}
 </div>
