@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('token')->nullable();
             $table->boolean('admin')->default(false);
-            $table->boolean('landlord')->default(false);
+            $table->foreignId('landlord_id')->nullable()->default(null);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -12,10 +12,6 @@
             <ul>
                 @if (request()->is('admin*'))
                     <li>
-                        <a href="/admin" class="{{ request()->is('admin') ? 'text-blue-500' : '' }}">Dashboard</a>
-                    </li>
-
-                    <li>
                         <a href="/admin/applications/landlords" class="{{ request()->routeIs('applications/landlords') ? 'text-blue-500' : '' }}">Landlord Applications</a>
                     </li>
 

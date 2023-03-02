@@ -1,6 +1,6 @@
 <div>
 
-    <div class="flex justify-center space-x-5 flex-wrap bg-gray-150">
+    <div class="flex justify-center space-x-5 flex-wrap bg-gray-150 mt-10">
         <x-form.input wire:model="searchTerm" name="search city or town" required autocomplete="email"   />
 
         <x-form.field>
@@ -111,7 +111,7 @@
         </x-form.field>
     </div>
     
-    <main class="max-w-3xl mx-auto mt-6 lg:mt-20">
+    <main class="max-w-3xl mx-auto">
         @if($properties->count())
             @foreach ($properties as $property)
                 <x-property-card :property="$property"/>

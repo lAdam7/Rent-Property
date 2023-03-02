@@ -20,9 +20,9 @@
     </div>
 
     <div class="flex">
-        <div class="basis-1/2">
-            <img class="fill rounded-lg" src="/images/bedroom.jpg" alt="Blog Post illustration">
-        </div>
+        
+        <img class="w-80 object-contain" src="/images/bedroom.jpg" alt="Blog Post illustration">
+       
 
         <div class="px-3 basis-1/2 flex flex-col space-y-2">
 

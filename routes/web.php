@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ApplylandlordController;
 use App\Http\Controllers\LandlordController;
+use App\Http\Controllers\AdminPropertyController;
 use App\Http\Controllers\AdminLandlordController;
 use App\Http\Controllers\PropertyController;
 
@@ -38,8 +38,8 @@ Route::post('logout', [LogoutController::class, 'destroy'])->middleware('auth');
 Route::get('verify/{token}', [RegisterController::class, 'update'])->name('verify'); 
 
 Route::middleware('can:verified')->group(function() {
-    Route::get('apply', [ApplylandlordController::class, 'create']);
-    Route::post('apply', [ApplylandlordController::class, 'store']);
+    Route::get('apply', [LandlordController::class, 'create']);
+    Route::post('apply', [LandlordController::class, 'store']);
 
     Route::get('apply/success', function() {
         return view('apply-landlord.success');
@@ -48,20 +48,16 @@ Route::middleware('can:verified')->group(function() {
 
 Route::middleware('can:landlord')->group(function() {
     Route::get('dashboard/properties', [LandlordController::class, 'index']);
-    Route::get('dashboard/add', [LandlordController::class, 'create']);
-    Route::post('dashboard/add', [LandlordController::class, 'store']);
+    Route::get('dashboard/add', [PropertyController::class, 'create']);
+    Route::post('dashboard/add', [PropertyController::class, 'store']);
 });
 
 Route::middleware('can:admin')->group(function() {
-    Route::get('admin', function() {
-        return view('admin.home');
-    });
+    Route::get('/admin/applications/landlords', [AdminLandlordController::class, 'index'])->name('applications/landlords');
+    Route::post('admin/applications/landlords/{application}', [AdminLandlordController::class, 'update']);
+    Route::delete('admin/applications/landlords/{application}', [AdminLandlordController::class, 'destroy']);
 
-    Route::get('/admin/applications/landlords', [ApplyLandlordController::class, 'index'])->name('applications/landlords');
-    Route::post('admin/applications/landlords/{application}', [ApplyLandlordController::class, 'update']);
-    Route::delete('admin/applications/landlords/{application}', [ApplyLandlordController::class, 'destroy']);
-
-    Route::get('/admin/applications/properties', [AdminLandlordController::class, 'index'])->name('applications/properties');
-    Route::patch('/admin/applications/properties/{property}', [AdminLandlordController::class, 'update']);
-    Route::delete('/admin/applications/properties/{property}', [AdminLandlordController::class, 'destroy']);
+    Route::get('/admin/applications/properties', [AdminPropertyController::class, 'index'])->name('applications/properties');
+    Route::patch('/admin/applications/properties/{property}', [AdminPropertyController::class, 'update']);
+    Route::delete('/admin/applications/properties/{property}', [AdminPropertyController::class, 'destroy']);
 });

@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
-class Applylandlord extends Model
+class Landlord extends Model
 {
     use HasFactory;
+    protected $table = "landlords";
 
     protected $guarded = [];
 

@@ -47,8 +47,7 @@ class DatabaseSeeder extends Seeder
             'surname' => 'Lyon',
             'email' => 'a.lyon2077@gmail.com',
             'email_verified_at' => now(),
-            'password' => 'TestTest',
-            'landlord' => true
+            'password' => 'TestTest'
         ]);
 
         User::factory(20)->create();

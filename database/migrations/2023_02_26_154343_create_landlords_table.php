@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('applylandlords', function (Blueprint $table) {
+        Schema::create('landlords', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->unique();
+            $table->boolean('approved')->default(false);
+            $table->string('contact_email')->unique();
+            $table->string('contact_number')->unique();
             $table->string('notes')->nullable();
             $table->timestamps();
         });
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('applylandlords');
+        Schema::dropIfExists('landlords');
     }
 };

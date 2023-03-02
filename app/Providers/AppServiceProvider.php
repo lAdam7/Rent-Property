@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('landlord', function() {
-            return auth()->user()->landlord;
+            return !is_null(auth()->user()->landlord) && auth()->user()->landlord->approved;
         });
 
         Gate::define('admin', function() {

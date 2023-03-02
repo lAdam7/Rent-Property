@@ -79,7 +79,7 @@ class Properties extends Component
                     'parking' => $this->parking
                 ]
             ])
-            ->paginate(2)
+            ->paginate(15)
             ->withQueryString();
 
 

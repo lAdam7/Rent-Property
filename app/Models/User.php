@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Applylandlord;
+use App\Models\Landlord;
 use App\Models\Property;
 
 class User extends Authenticatable
@@ -52,9 +52,9 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
 
-    public function applylandlord()
+    public function landlord()
     {
-        return $this->hasOne(Applylandlord::class);
+        return $this->hasOne(Landlord::class);
     }
 
     public function properties()

@@ -38,7 +38,7 @@
                               @can('admin')
                                 <a
                                   class="mr-6 rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block"
-                                  href="/admin"
+                                  href="/admin/applications/landlords"
                                 >
                                   Admin Panel
                                 </a>
@@ -125,13 +125,23 @@
                 <p class="max-w-sm mx-auto mt-4 text-gray-500">
                   Got a property you want to rent? But don't want to pay estate agent fees? List your property here and get directly talking with your future tenant!
                 </p>
-          
-                <a
-                  href="/dashboard/properties"
-                  class="inline-block px-12 py-3 mt-8 text-sm font-medium text-indigo-600 border border-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500"
-                >
-                  Get Started
-                </a>
+                
+                @can('landlord')
+                  <a
+                    href="/dashboard/properties"
+                    class="inline-block px-12 py-3 mt-8 text-sm font-medium text-indigo-600 border border-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500"
+                  >
+                    Get Started
+                  </a>
+                @else
+                  <a
+                    href="/apply"
+                    class="inline-block px-12 py-3 mt-8 text-sm font-medium text-indigo-600 border border-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500"
+                  >
+                    Get Started
+                  </a>
+                @endcan
+
               </div>
               @endif
             @endauth

@@ -36,7 +36,8 @@ class PropertyFactory extends Factory
             'bathrooms' => fake()->numberBetween(1, 3),
             'garden' => fake()->boolean(),
             'parking' => fake()->boolean(),
-            'body' => fake()->paragraph(3)
+            'body' => fake()->paragraph(3),
+            'created_at' => fake()->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null)
         ];
     }
 }
