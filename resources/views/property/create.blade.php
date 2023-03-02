@@ -1,9 +1,12 @@
 <x-layout>
     <x-admin.layout heading="Add Property">
-        <form method="POST" action="add">
+        <form method="POST" action="add" enctype='multipart/form-data'>
             @csrf
 
             <x-form.input name="name" required />
+
+            <x-form.input name="images[]" type="file" multiple />
+
             <x-form.input name="street" required />
             <x-form.input name="town or city" required />
             <x-form.input name="available" type="date" value="{{ date('Y-m-d') }}" required />

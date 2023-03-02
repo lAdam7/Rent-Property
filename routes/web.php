@@ -52,6 +52,7 @@ Route::middleware('can:landlord')->group(function() {
     Route::post('dashboard/add', [PropertyController::class, 'store']);
 
     Route::get('dashboard/properties/edit/{property}', [PropertyController::class, 'edit']);
+    Route::patch('dashboard/properties/edit/{property}', [PropertyController::class, 'update']);
 });
 
 Route::middleware('can:admin')->group(function() {

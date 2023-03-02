@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\PropertyFrequency;
 use App\Models\PropertyType;
 use App\Models\User;
+use App\Models\PropertyImages;
 
 class Property extends Model
 {
@@ -64,5 +65,10 @@ class Property extends Model
     public function landlord()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(PropertyImages::class);
     }
 }

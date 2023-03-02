@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\PropertyFrequency;
 use App\Models\PropertyType;
+use App\Models\PropertyImages;
 
 class PropertyController extends Controller
 {
@@ -36,13 +37,42 @@ class PropertyController extends Controller
         $attributes['user_id'] = auth()->id();
 
         $property = Property::create($attributes);
+        
+        $imageAttributes = request()->validate([
+            'images' => 'required',
+            'images.*' => 'image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        foreach ($imageAttributes['images'] as $k => $image)
+        {
+            $imageName = auth()->id() . '-' . $k  . '-' . time() . '.' . $image->extension();
+            $image->move(public_path('images/thumbnails'), $imageName);
+            $image = $imageName;
+
+            PropertyImages::create([
+                'property_id' => $property->id,
+                'thumbnail' => $imageName
+            ]);
+        }
 
         return redirect("dashboard/properties")->with("success", "This listing is awaiting approval by a site administrator!");
     }
 
     public function edit(Property $property)
     {
-        return view('landlord.edit');
+        return view('landlord.edit', [
+            'property' => $property,
+            'types' => PropertyType::all()
+        ]);
+    }
+
+    public function update(Property $property)
+    {
+        $attributes = $this->validateProperty($property);
+        $attributes['approved'] = false;
+        $property->update($attributes);
+
+        return redirect("dashboard/properties")->with('success', 'Property updated, awaiting re-approval from an admin!');
     }
 
     protected function validateProperty(?Property $property = null): array
