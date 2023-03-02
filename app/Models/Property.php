@@ -17,6 +17,8 @@ class Property extends Model
 
     public function scopeFilter($query, array $filters) // Post::newqUERY->FILTER
     {
+        $query->where('approved', true);
+
         $query->when($filters['search'], function($query, $search) {
             $query->where(fn($query) =>
                 $query->where('town_or_city', 'like', '%' . $search . '%')

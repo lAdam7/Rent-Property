@@ -40,13 +40,15 @@
                                                 </span>
                                             </td>
                                         @endif
-
+                                        
+                                        
                                         <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <form method="POST" action="#">
-                                                @csrf
-
-                                                <button class="text-xs text-blue-400">Edit</button>
-                                            </form>
+                                            <a 
+                                            class="text-xs text-blue-400"
+                                                href="/dashboard/properties/edit/{{ $property->id }}"
+                                            >
+                                                Edit
+                                            </a>
                                         </td>
 
                                         <td class="px-4 py-4 whitespace-nowrap">

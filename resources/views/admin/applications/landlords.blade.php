@@ -22,8 +22,12 @@
                                                 Pending
                                             </span>
                                         </td>
-
+                                        
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <a class="text-xs text-blue-400" href="/admin/applications/landlords/edit/{{ $application->id }}">View</a>
+                                        </td>
+
+                                        {{-- <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <form method="POST" action="/admin/applications/landlords/{{ $application->id }}">
                                                 @csrf
 
@@ -39,7 +43,7 @@
 
                                                 <button class="text-xs text-red-400">Reject</button>
                                             </form>
-                                        </td>     
+                                        </td>      --}}
 
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="ml-4">

@@ -1,6 +1,6 @@
 <x-layout>
     <x-admin.layout heading="Landlord Applications">
-        @if($properties->count())
+        @if($properties->count())            
             <div class="flex flex-col">
             <div class ="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -23,9 +23,12 @@
                                                     {{ $property->street }}, {{ $property->town_or_city }}
                                                 </div>
                                             </div>
-                                        </td>                                 
-
+                                        </td>     
+                                            
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <a class="text-xs text-blue-400" href="/admin/applications/properties/edit/{{ $property->id }}">View</a>
+                                        </td>
+                                        {{-- <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <form method="POST" action="/admin/applications/properties/{{ $property->id }}">
                                                 @csrf
                                                 @method('patch')
@@ -42,7 +45,7 @@
 
                                                 <button class="text-xs text-red-400">Reject</button>
                                             </form>
-                                        </td>     
+                                        </td>      --}}
 
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="ml-4">

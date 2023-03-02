@@ -21,13 +21,20 @@ class AdminLandlordController extends Controller
         ]);
 
         $name = $application->user->forename . ' ' . $application->user->surname;
-        return back()->with('success', 'Accepted ' . $name . ' as a landlord, they can now apply to list properties');
+        return redirect('/admin/applications/landlords')->with('success', 'Accepted ' . $name . ' as a landlord, they can now apply to list properties');
     }
 
     public function destroy(Landlord $application)
     {
         $application->delete();
 
-        return back()->with('success', 'Rejected landlord application');
+        return redirect('/admin/applications/landlords')->with('success', 'Rejected landlord application');
+    }
+
+    public function edit(Landlord $landlord)
+    {
+        return view('admin.landlord.edit', [
+            'landlord' => $landlord
+        ]);
     }
 }

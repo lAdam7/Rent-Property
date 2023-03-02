@@ -18,7 +18,7 @@
   @endcannot
 @endauth
 
-<body style="font-family: Open Sans, sans-serif">
+<body {{$attributes}} style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
         <nav class="md:flex md:justify-between md:items-center">
             <div>
@@ -48,7 +48,7 @@
                                   class="mr-6 rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block"
                                   href="/dashboard/properties"
                                 >
-                                  Dashboard
+                                  Your Properties
                                 </a>
                               @else
                                 @can('verified')

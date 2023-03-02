@@ -50,14 +50,20 @@ Route::middleware('can:landlord')->group(function() {
     Route::get('dashboard/properties', [LandlordController::class, 'index']);
     Route::get('dashboard/add', [PropertyController::class, 'create']);
     Route::post('dashboard/add', [PropertyController::class, 'store']);
+
+    Route::get('dashboard/properties/edit/{property}', [PropertyController::class, 'edit']);
 });
 
 Route::middleware('can:admin')->group(function() {
     Route::get('/admin/applications/landlords', [AdminLandlordController::class, 'index'])->name('applications/landlords');
-    Route::post('admin/applications/landlords/{application}', [AdminLandlordController::class, 'update']);
+    Route::patch('admin/applications/landlords/{application}', [AdminLandlordController::class, 'update']);
     Route::delete('admin/applications/landlords/{application}', [AdminLandlordController::class, 'destroy']);
+
+    Route::get('admin/applications/landlords/edit/{landlord}', [AdminLandlordController::class, 'edit']);
 
     Route::get('/admin/applications/properties', [AdminPropertyController::class, 'index'])->name('applications/properties');
     Route::patch('/admin/applications/properties/{property}', [AdminPropertyController::class, 'update']);
     Route::delete('/admin/applications/properties/{property}', [AdminPropertyController::class, 'destroy']);
+
+    Route::get('admin/applications/properties/edit/{property}', [AdminPropertyController::class, 'edit']);
 });

@@ -19,13 +19,20 @@ class AdminPropertyController extends Controller
         $property['approved'] = true;
         $property->update();
 
-        return back()->with('success', 'Accepted property application');
+        return redirect('/admin/applications/properties')->with('success', 'Accepted property application');
     }
 
     public function destroy(Property $property)
     {
         $property->delete();
 
-        return back()->with('success', 'Rejected property application');
+        return redirect('/admin/applications/properties')->with('success', 'Rejected property application');
+    }
+
+    public function edit(Property $property)
+    {
+        return view('admin.property.edit', [
+            'property' => $property
+        ]);
     }
 }

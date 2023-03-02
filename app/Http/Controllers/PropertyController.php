@@ -40,6 +40,11 @@ class PropertyController extends Controller
         return redirect("dashboard/properties")->with("success", "This listing is awaiting approval by a site administrator!");
     }
 
+    public function edit(Property $property)
+    {
+        return view('landlord.edit');
+    }
+
     protected function validateProperty(?Property $property = null): array
     {
         $user ??= new Property(); // if null just use blank template

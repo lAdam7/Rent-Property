@@ -31,12 +31,12 @@
                 <div class="flex">
                     <x-bed />
                     
-                    <p class="pl-1"><strong>4</strong></p>
+                    <p class="pl-1"><strong>{{ $property->bedrooms }}</strong></p>
                 </div>
                 <div class="flex">
                     <x-bath />
                     
-                    <p class="pl-1"><strong>4</strong></p>
+                    <p class="pl-1"><strong>{{ $property->bathrooms }}</strong></p>
                 </div>
             </div>
             
