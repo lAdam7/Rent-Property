@@ -18,6 +18,8 @@ class Properties extends Component
     public $garden;
     public $parking;
 
+    protected $listeners = ['updateTerm' => 'updateTerm'];
+
 
     public function mount(){
         $this->sort_by = 'created_at.DESC'; 
@@ -53,6 +55,11 @@ class Properties extends Component
     {
         $this->garden = !$this->garden;
         $this->resetPage();
+    }
+
+    public function updateTerm($location)
+    {
+        $this->searchTerm = $location;
     }
 
     public function flipParking()

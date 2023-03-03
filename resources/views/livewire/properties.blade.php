@@ -1,8 +1,34 @@
 <div>
-
     <div class="flex justify-center space-x-5 flex-wrap bg-gray-150 mt-10">
-        <x-form.input wire:model="searchTerm" name="search city or town" required autocomplete="email"   />
+        {{-- <x-form.input wire:model="searchTerm" name="search city or town" required /> --}}
+        <x-form.field>
+            <x-form.label name="search city or town" />
+        
+            <input 
+                wire:model="searchTerm"
+                class="border border-gray-200 p-2 w-full rounded" 
+                name="search city or town" 
+                id="search_city_or_town" 
+            />
+        </x-form.field>
 
+        <script>  
+            function initialize() {
+                var input = document.getElementById('search_city_or_town');
+                var options = {
+                    types: ['(cities)'],
+                    componentRestrictions: {country: 'GB'}
+                };
+                var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+                autocomplete.addListener('place_changed', function () {
+                    var place = autocomplete.getPlace();
+                    Livewire.emit('updateTerm', place['formatted_address']);
+                });
+            }
+        </script>
+        {{-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{ '' }}&libraries=places&region=GB&callback=initialize" ></script> --}}
+        
         <x-form.field>
             <x-form.label name="property type" />
 
