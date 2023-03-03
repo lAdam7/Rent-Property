@@ -27,7 +27,7 @@
                 });
             }
         </script>
-        {{-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{ '' }}&libraries=places&region=GB&callback=initialize" ></script> --}}
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDtgYgD8fRvBnmXX7qVU_tpSwFTUKuwUqw&libraries=places&region=GB&callback=initialize" ></script>
         
         <x-form.field>
             <x-form.label name="property type" />

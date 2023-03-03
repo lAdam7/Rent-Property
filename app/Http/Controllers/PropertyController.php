@@ -82,17 +82,16 @@ class PropertyController extends Controller
             'street' => ['required', 'min:4', 'max:255'],
             'town_or_city' => ['required', 'min:3', 'max:255'],
             'available' => ['required', 'date'],
-            'deposit' => ['required', 'integer'],
-            'price' => ['required', 'integer'],
-            'property_frequency_id' => ['exists:property_frequency,id'],
-            'min_tenancy' => ['max:20'],
+            'deposit' => ['required', 'integer', 'between:0,2500'],
+            'price' => ['required', 'integer', 'between:300,2500'],
+            'min_tenancy' => ['required', 'max:20'],
             'property_type_id' => ['exists:property_type,id'],
             'furnished' => [''],
             'garden' => [''],
             'parking' => [''],
-            'bedrooms' => ['integer'],
-            'bathrooms' => ['integer'],
-            'body' => ['required', 'min:20', 'max:1000']
+            'bedrooms' => ['required', 'integer', 'between:1,25'],
+            'bathrooms' => ['required', 'integer', 'between:1,25'],
+            'body' => ['required', 'min:50', 'max:1000']
         ]);
     }
 }

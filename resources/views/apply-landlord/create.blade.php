@@ -1,9 +1,4 @@
 <x-layout>
-
-    {{-- @php
-        dd(is_null(auth()->user()->landlord_application()));
-    @endphp --}}
-
     <section class="px-6 py-8">
         <main class="max-w-lg mx-auto mt-10">
             <x-panel>
@@ -15,7 +10,7 @@
                     
                     <x-form.input name="contact email" type="email" value="{{ auth()->user()->email }}"/>
                     <x-form.input name="contact number" type="tel" pattern="^\d{11}$" required />
-                    <x-form.textarea name="notes" />
+                    <x-form.textarea rows="5" name="notes" />
 
                     <div class="mb-6 text-center">
                         <x-form.button>Submit</x-form.button>

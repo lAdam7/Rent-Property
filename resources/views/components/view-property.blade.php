@@ -82,7 +82,7 @@
               <strong>Property Type:</strong> {{ ucwords($property->type->name) }}
             </p>
             <p>
-              <strong>Availability:</strong> {{ $property->available }}
+              <strong>Availability:</strong> {{ Carbon\Carbon::parse($property->available)->isPast() ? 'Available now' : Carbon\Carbon::parse($property->available)->format('d/m/Y'); }}
             </p>
 
           <div class="prose max-w-none">

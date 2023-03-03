@@ -1,6 +1,6 @@
 <x-layout>
     <section class="px-6 py-8">
-        <main class="max-w-lg mx-auto mt-10">
+        <main class="max-w-4xl mx-auto mt-10">
             <x-panel>
                 <form method="POST" action="/dashboard/properties/edit/{{ $property->id }}" enctype="multipart/form-data">
                     @csrf
@@ -8,17 +8,11 @@
         
                     <x-form.input name="name" :value="old('name', $property->name)" required />
                     <x-form.input name="street" :value="old('street', $property->street)" required />
-                    <x-form.input name="town_or_city" :value="old('town_or_city', $property->town_or_city)" required />
-                    <x-form.input name="available" type="date" value="{{ date('Y-m-d') }}" required />
+                    <x-form.input name="town or city" :value="old('town_or_city', $property->town_or_city)" required />
+                    
+                    <div class="flex justify-between">  
+                        <x-form.input name="available" type="date" value="{{ date('Y-m-d') }}" required />
 
-                    <div class="flex justify-between">
-                        <x-form.input name="deposit" type="number" :value="old('deposit', $property->deposit)" required />
-                        <x-form.input name="price" type="number" :value="old('price', $property->price)" required />
-                    </div>
-
-                    <div class="flex justify-between">
-                        <x-form.input name="min tenancy" :value="old('min_tenancy', $property->min_tenancy)" required />
-        
                         <x-form.field>  
                             <x-form.label name="type" />
         
@@ -26,12 +20,17 @@
         
         
                                 @foreach ($types as $type)
-                                    <option value="{{ $type->id }}" {{ old('property_type_id', $property->property_type_id) == $property->property_type_id ? 'selected' : '' }}>{{ ucwords($type->name) }}</option>
+                                    <option value="{{ $type->id }}" {{ old('property_type_id', $property->property_type_id) == $type->id ? 'selected' : '' }}>{{ ucwords($type->name) }}</option>
                                 @endforeach
                             </select>
         
                             <x-form.error name="type" />
                         </x-form.field>
+                    </div>
+                    <div class="flex justify-between">
+                        <x-form.input name="deposit" type="number" :value="old('deposit', $property->deposit)" required />
+                        <x-form.input name="price" type="number" :value="old('price', $property->price)" required />
+                        <x-form.input name="min tenancy" :value="old('min_tenancy', $property->min_tenancy)" required />
                     </div>
 
                     <div class="flex justify-between">

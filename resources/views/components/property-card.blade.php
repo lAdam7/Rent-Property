@@ -29,7 +29,7 @@
         >
        
 
-        <div class="px-3 basis-1/2 flex flex-col space-y-2">
+        <div class="px-3 basis-1/2 flex flex-col space-y-2" style="max-width: 50%">
 
             <div class="flex flex-wrap space-x-7 border-b">
                 <p><strong>{{ ucwords($property->type->name) }}</strong></p>
@@ -45,7 +45,7 @@
                 </div>
             </div>
             
-            <p class="flex-1">{{ strlen($property->body) > 300 ? substr($property->body,0,300)."..." : $property->body }}</p>
+            <p class="flex-1 break-words">{{ strlen($property->body) > 300 ? substr($property->body,0,300)."..." : $property->body }}</p>
 
             <div class="flex justify-between bg-gray-500 p-2 rounded-lg">
                 <p class="text-sm text-white">Deposit: £{{ $property->deposit }}</p>
