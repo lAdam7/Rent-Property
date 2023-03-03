@@ -29,7 +29,7 @@
                                             <td class="px-4 py-4 whitespace-nowrap">
                                                 <div class="ml-4">
                                                     <div class="text-xs font-medium text-gray-400">
-                                                        £{{ $property->price }} {{ $property->frequency->name }}
+                                                        £{{ $property->price }} pcm
                                                     </div>
                                                 </div>
                                             </td>                          

@@ -10,9 +10,14 @@
                     <x-form.input name="email" type="email" autocomplete="username"/>
                     <x-form.input name="password" type="password" autocomplete="password"/>
 
-                    <div class="mb-6 text-center">
+                    <div class="text-center">
                         <x-form.button>Login</x-form.button>
+
                     </div>
+                    <div class="text-center mt-5">
+                        <a class="mb-6 text-xs text-blue-500" href="/reset_password">Forgot Password?</a>
+                    </div>
+                    
                 </form>
             </x-panel>
         </main>

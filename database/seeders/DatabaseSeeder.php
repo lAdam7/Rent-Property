@@ -6,7 +6,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Property;
-use App\Models\PropertyFrequency;
 use App\Models\PropertyType;
 
 class DatabaseSeeder extends Seeder
@@ -17,18 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::truncate();
-        PropertyFrequency::truncate();
         Property::truncate();
 
-        PropertyFrequency::create([
-            'name' => 'weekly'
-        ]);
-        PropertyFrequency::create([
-            'name' => 'fortnightly'
-        ]);
-        PropertyFrequency::create([
-            'name' => 'monthly'
-        ]);
         PropertyType::create([
             'name' => 'detached'
         ]);
@@ -51,6 +40,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(20)->create();
-        Property::factory(50)->create();
+        Property::factory(20)->create();
     }
 }

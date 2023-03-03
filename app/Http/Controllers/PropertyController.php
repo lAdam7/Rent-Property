@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Property;
-use App\Models\PropertyFrequency;
 use App\Models\PropertyType;
 use App\Models\PropertyImages;
 
@@ -25,7 +24,6 @@ class PropertyController extends Controller
     public function create()
     {
         return view('property.create', [
-            'frequencies' => PropertyFrequency::all(),
             'types' => PropertyType::all()
         ]);
     }

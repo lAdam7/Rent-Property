@@ -21,7 +21,6 @@ return new class extends Migration
             $table->timestamp('available');
             $table->integer('deposit');
             $table->integer('price');
-            $table->foreignId('property_frequency_id');
             $table->string('min_tenancy');
             $table->boolean('furnished');
             $table->foreignId('property_type_id');

@@ -8,6 +8,7 @@ use App\Http\Controllers\LandlordController;
 use App\Http\Controllers\AdminPropertyController;
 use App\Http\Controllers\AdminLandlordController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +35,12 @@ Route::get('login', [LoginController::class, 'create'])->middleware('guest');
 Route::post('login', [LoginController::class, 'store'])->middleware('guest');
 
 Route::post('logout', [LogoutController::class, 'destroy'])->middleware('auth');
-
 Route::get('verify/{token}', [RegisterController::class, 'update'])->name('verify'); 
+
+Route::get('reset_password', [ResetPasswordController::class, 'show']);
+Route::post('reset_password', [ResetPasswordController::class, 'store']);
+Route::get('password/reset/{token}/{email}', [ResetPasswordController::class, 'edit'])->name('resetToken');
+Route::patch('password/reset', [ResetPasswordController::class, 'update']);
 
 Route::middleware('can:verified')->group(function() {
     Route::get('apply', [LandlordController::class, 'create']);

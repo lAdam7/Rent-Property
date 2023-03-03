@@ -3,7 +3,9 @@
         <form method="POST" action="add" enctype='multipart/form-data'>
             @csrf
 
+            <p class="text-gray-500 text-xs">*Name is only visible to you, to help identify your properties</p>
             <x-form.input name="name" required />
+            
 
             <x-form.input name="images[]" type="file" multiple />
 
@@ -13,40 +15,8 @@
             <div class="flex justify-between">
                 <x-form.input name="deposit" type="number" value=0 required />
                 <x-form.input name="price" type="number" value=0 required />
-                
-                <x-form.field>
-                    <x-form.label name="frequency" />
-
-                    <select name="property_frequency_id" id="property_frequency_id">
-
-
-                        @foreach ($frequencies as $frequency)
-                            <option value="{{ $frequency->id }}" {{ old('property_frequency_id') == $frequency->id ? 'selected' : '' }}>{{ ucwords($frequency->name) }}</option>
-                        @endforeach
-                    </select>
-
-                    <x-form.error name="frequency" />
-                </x-form.field>
-            </div>
-
-            <div class="flex justify-between">
                 <x-form.input name="min tenancy" />
-
-                <x-form.field>
-                    <x-form.label name="type" />
-
-                    <select name="property_type_id" id="property_type_id">
-
-
-                        @foreach ($types as $type)
-                            <option value="{{ $type->id }}" {{ old('property_type_id') == $frequency->id ? 'selected' : '' }}>{{ ucwords($type->name) }}</option>
-                        @endforeach
-                    </select>
-
-                    <x-form.error name="type" />
-                </x-form.field>
             </div>
-
 
             <div class="flex justify-between">
                 <input type="hidden" name="furnished" value="0">

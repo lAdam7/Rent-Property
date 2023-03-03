@@ -1,3 +1,14 @@
 @props(['name'])
 
-<label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="{{ $name }}">{{ ucwords(($name == "password_confirmation" ? "Repeat Password" : $name)) }}</label>
+@php
+    if ($name == "password_confirmation")
+    {
+        $name = "Repeat Password";
+    }
+    if ($name == "images[]")
+    {
+        $name = "Images";
+    }
+@endphp
+
+<label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="{{ $name }}">{{ ucwords($name) }}</label>

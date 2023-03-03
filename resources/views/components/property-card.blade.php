@@ -21,7 +21,12 @@
 
     <div class="flex">
         
-        <img class="w-80 object-contain" src="/images/bedroom.jpg" alt="Blog Post illustration">
+        <img 
+            class="object-cover" 
+            style="max-height: 300px; min-width: 350px; max-width: 350px; height: auto; width: auto;" 
+            src="{{ asset('images/thumbnails/' . $property->images[0]->thumbnail) }}" 
+            alt="Blog Post illustration"
+        >
        
 
         <div class="px-3 basis-1/2 flex flex-col space-y-2">
@@ -42,9 +47,9 @@
             
             <p class="flex-1">{{ strlen($property->body) > 300 ? substr($property->body,0,300)."..." : $property->body }}</p>
 
-            <div class="flex justify-between">
-                <p class="text-sm"><strong>Deposit: £{{ $property->deposit }}</strong></p>
-                <p class="text-sm"><strong>£{{ $property->price }} pcm</strong></p>
+            <div class="flex justify-between bg-gray-500 p-2 rounded-lg">
+                <p class="text-sm text-white">Deposit: £{{ $property->deposit }}</p>
+                <p class="text-sm text-white">£{{ $property->price }} pcm</p>
             </div>
         </div>
         

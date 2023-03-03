@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\PropertyFrequency;
 use App\Models\PropertyType;
 use App\Models\User;
 use App\Models\PropertyImages;
+use App\Models\Landlord;
 
 class Property extends Model
 {
@@ -52,11 +52,6 @@ class Property extends Model
         return 'id';
     }
 
-    public function frequency()
-    {
-        return $this->belongsTo(PropertyFrequency::class, 'property_frequency_id');
-    }
-
     public function type()
     {
         return $this->belongsTo(PropertyType::class, 'property_type_id');
@@ -64,7 +59,7 @@ class Property extends Model
 
     public function landlord()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Landlord::class, 'user_id');
     }
 
     public function images()
